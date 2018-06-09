@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- 
+    canvas 不指定大小默认为 300宽150高
+    不建议大小写在这里 
+    宽度和高度写在行间样式（同样指定了画布内容的精度）
+ -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Canvas</title>
+</head>
+
+<body>
+    <canvas id="canvas" width="500" height="250">
+        当前浏览器不支持canvas
+    </canvas>
+</body>
+<script>
+    var canvas = document.getElementById("canvas")
+    // canvas.width= 1024;
+    // canvas.height = 500; // js决定画布的大小
+    // 使用context绘制
+
+    /**
+    判断当前浏览器是否支持canvas
+    */
+    if(canvas.getContext("2d")){
+        var context = canvas.getContext("2d")
+    }else{
+        alert(当前浏览器不支持canvas)
+    }
+
+</script>
+</html>
+<style>
+    #canvas{
+        border: 1px solid red;
+        display: block;
+        margin: 50px auto;
+        
+        /* width:500px;
+        height:500px; */
+    }
+</style>

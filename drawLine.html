@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>DrawLine</title>
+</head>
+<body>
+    <canvas id="canvas" width="1024" height="768">
+        当前浏览器不支持canvas
+    </canvas>
+<script>
+    var canvas = document.getElementById("canvas")
+    var context = canvas.getContext("2d")
+
+    // 绘图 （坐标相对画布左上角为原点）
+    context.beginPath() // 状态开始
+
+    context.moveTo(100,100) // 起点为 （100,100）位置 （状态设置）
+    context.lineTo(300,300) // 终点（700,700）位置 （状态设置）
+    context.lineTo(100,300) // 连续绘制
+    context.lineTo(100,100) // 首尾衔接
+
+    context.closePath() // 状态结束
+
+    context.lineWidth = 5 // 设置线条宽度
+    context.strokeStyle = "#005588" // 线条颜色
+    context.stroke() // 连线  （绘制线条）
+
+    context.fillStyle = "red" // 填充色
+    context.fill() // 填充 
+
+    /**重新调用moveTo 画第二条线段*/
+    context.beginPath()
+
+    context.moveTo(0,0)
+    context.lineTo(500,200)
+    
+    context.closePath()
+
+    context.strokeStyle = "orange" // 线条颜色
+    context.stroke()
+
+</script>
+</body>
+</html>
+<style>
+    #canvas{
+        border: 1px solid red;
+        display: block;
+        margin: 50px auto;
+        
+        /* width:500px;
+        height:500px; */
+    }
+</style>
