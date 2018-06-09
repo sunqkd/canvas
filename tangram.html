@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>七巧板</title>
+</head>
+<body>
+    <canvas id="canvas" width="800" height="800"> 
+        浏览器不支持canvas
+    </canvas>
+
+    <script>
+        
+        var tangram = [
+            {
+                p:[{x:0,y:0},{x:800,y:0},{x:400,y:400}],
+                color:"red"
+            },
+            {
+                p:[{x:0,y:0},{x:400,y:400},{x:0,y:800}],
+                color:"blue"
+            },
+            {
+                p:[{x:800,y:0},{x:800,y:400},{x:600,y:600},{x:600,y:200}],
+                color:"pink"
+            },
+            {
+                p:[{x:600,y:200},{x:600,y:600},{x:400,y:400}],
+                color:"orange"
+            },
+            {
+                p:[{x:400,y:400},{x:600,y:600},{x:400,y:800},{x:200,y:600}],
+                color:"yellow"
+            },
+            {
+                p:[{x:200,y:600},{x:400,y:800},{x:0,y:800}],
+                color:"cyan"
+            },
+            {
+                p:[{x:800,y:400},{x:800,y:800},{x:400,y:800}],
+                color:"green"
+            }
+        ]
+        window.onload = function(){
+            var canvas = document.getElementById("canvas")
+            var context = canvas.getContext("2d") // 绘图基础
+
+            for(var i = 0;i<tangram.length;i++) {
+                draw(tangram[i], context)
+            }
+
+            //绘图函数
+            function draw(piece,ext){
+                ext.beginPath() // 状态开始
+
+                ext.moveTo(piece.p[0].x,piece.p[0].y) // 开始位置
+                for(var i=1;i<piece.p.length;i++){
+                    ext.lineTo(piece.p[i].x,piece.p[i].y)
+                }
+
+                ext.closePath() // 状态结束
+                // 填充颜色
+                ext.fillStyle = piece.color;
+                ext.fill()
+
+                // 绘制边框
+                ext.strokeStyle = "black"
+                ext.lineWidth = 5
+                ext.stroke()
+            }
+
+        }
+       
+    </script>
+</body>
+</html>
+<style>
+#canvas{
+    border: 1px solid red;
+    display: block;
+    margin: 50px auto;
+    
+    /* width:500px;
+    height:500px; */
+}
+</style>
