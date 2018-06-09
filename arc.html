@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>弧线</title>
+</head>
+<body>
+    <canvas id="canvas" ></canvas>
+    <script>
+        var canvas = document.getElementById("canvas")
+        canvas.width = 1000
+        canvas.height = 800
+        var context = canvas.getContext("2d")
+
+        context.lineWidth = 5
+        context.strokeStyle = "cyan"
+        /** 300,300 为圆心 200为半径  角度从0画到1.5pi 顺时针(false) 逆时针（true）*/
+
+        /** 一 */
+        // context.beginPath()
+        // context.arc(300,300,200,0,0.5*Math.PI,true) // (状态)
+        // context.closePath()  // 弧线自动收尾相连
+        // context.stroke() 
+
+
+        /** 二 */ 
+        for(var i=0;i<10;i++){
+            context.beginPath()
+
+            context.arc(50 +(i *100),60,40,0,2*Math.PI*(i+1)/10,false)
+
+            context.closePath()
+            context.stroke()
+        }
+
+        /** 三 */
+        context.fillStyle = "red"
+        for(var i=0;i<10;i++){
+            context.beginPath() // 重新规划一条路径 不一定要和closePath() 成对存在
+
+            context.arc(50 +(i *100),200,40,0,2*Math.PI*(i+1)/10)
+
+            context.stroke()
+            context.fill()
+        }
+
+    </script>
+</body>
+</html>
+<style>
+#canvas{
+    border: 1px solid red;
+    display: block;
+    margin: 50px auto;
+}
+</style>
