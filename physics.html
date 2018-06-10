@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <canvas id="canvas">
+        浏览器不支持
+    </canvas>
+    <script>
+       
+        // g 加速度 vx、vy 为速度
+        var ball = {x:512,y:100,r:20,g:2,vx:-4,vy:-10,color:"red"}
+
+       window.onload = function(){
+            var canvas = document.getElementById("canvas")
+            canvas.width= 1024
+            canvas.height= 768
+            var context = canvas.getContext("2d")
+            console.log(context)
+            setInterval(() => {
+                render(context)
+                update()
+            },50)
+
+       }
+
+       function render(cxt){
+        //    cxt.clearRect(0,0,cxt.canvas.width,cxt.canvas.height)
+           cxt.fillStyle = ball.color
+           cxt.beginPath()
+           cxt.arc(ball.x,ball.y,ball.r,0,2*Math.PI)
+           cxt.closePath()
+
+           cxt.fill()
+
+       }
+       function update(){
+           ball.x += ball.vx
+           ball.y += ball.vy
+           ball.vy += ball.g
+
+           if(ball.y > 768 - ball.r){ // 圆心 （着地）
+              console.log(ball.vy)
+               ball.y = 768 -ball.r
+               ball.vy= -ball.vy*0.9
+
+
+           }
+        }
+    </script>
+</body>
+</html>
+<style>
+#canvas{
+    border: 1px solid red;
+    display: block;
+    margin: 50px auto;
+}
+</style>
